@@ -1,14 +1,12 @@
-import https from 'https'
-import fs from 'fs'
-import crypto from 'crypto'
-import path from 'path'
-import { delay } from './helper.js'
+const https = require('https')
+const fs = require('fs')
+const crypto = require('crypto')
+const path = require('path')
+const { delay } = require('./helper.js')
 
-const __dirname = path.resolve();
-
-export async function get(url) {
+exports.get = async function (url) {
 	const filename = crypto.createHash('md5').update(url.toLowerCase()).digest('hex')
-	const cachePath = path.join(__dirname, 'caches', filename)
+	const cachePath = path.join(__dirname,'../', 'caches', filename)
 	if (fs.existsSync(cachePath)) {
 		return new Promise((resolve, reject) => {
 			fs.readFile(cachePath, { encoding: 'utf-8' }, (err, data) => {
@@ -37,7 +35,7 @@ export async function get(url) {
 					rawData += chunk
 				})
 				res.on('end', () => {
-					const cacheDir = path.join(__dirname, 'caches')
+					const cacheDir = path.join(__dirname,'../', 'caches')
 					if (!fs.existsSync(cacheDir)) {
 						fs.mkdirSync(cacheDir)
 					}

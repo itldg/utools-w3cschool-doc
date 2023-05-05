@@ -1,6 +1,6 @@
-import jQuery from 'jquery'
-import { JSDOM } from 'jsdom'
-export function removeHtmlTag(content) {
+const jQuery = require('jquery')
+const { JSDOM } = require('jsdom')
+exports.removeHtmlTag = function (content) {
 	content = content.replace(/(?:<\/?[a-z][a-z1-6]{0,9}>|<[a-z][a-z1-6]{0,9} .+?>)/gi, '')
 	return content
 		.replace(/&amp;/g, '&')
@@ -14,7 +14,7 @@ export function removeHtmlTag(content) {
  * @param {String} html - html字符串
  * @return {Function} Jquery
  */
-export function getDom(html) {
+exports.getDom = function (html) {
 	var dom = new JSDOM(html)
 	return jQuery(dom.window)
 }
@@ -23,7 +23,7 @@ export function getDom(html) {
  * @param {Number} ms 等待时长
  * @return {Promise} 空数据
  */
-export function delay(ms) {
+exports.delay = function (ms) {
 	return new Promise((resolve) => {
 		setTimeout(() => {
 			resolve()

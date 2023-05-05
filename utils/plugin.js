@@ -1,11 +1,11 @@
-import path from 'path'
-import fs from 'fs'
-import jQuery from 'jquery'
-import hljs from 'highlight.js/lib/common'
-import { JSDOM } from 'jsdom'
-import { removeHtmlTag } from './helper.js'
-const __dirname = path.resolve()
-const pluginTemplateDir = path.join(__dirname, 'plugin_template')
+const fs = require('fs')
+const path = require('path')
+const jQuery = require('jquery')
+const { JSDOM } = require('jsdom')
+const hljs = require('highlight.js/lib/common')
+const { removeHtmlTag } = require('./helper.js')
+
+const pluginTemplateDir = path.join(__dirname, '../', 'plugin_template')
 /**
  * 将指定src目录下的所有文件剪切到指定目标dest目录下
  * @param src 源目录
@@ -31,7 +31,7 @@ function copyDirectory(src, dest) {
 		}
 	})
 }
-export default class {
+module.exports = class {
 	/**
 	 *  @typedef Config
 	 *  @type {Object}
@@ -46,7 +46,7 @@ export default class {
 	constructor(config) {
 		this.config = config
 		/** 插件目录 */
-		this.pluginDir = path.join(__dirname, 'plugins', config.category)
+		this.pluginDir = path.join(__dirname,'../', 'plugins', config.category)
 		if (!fs.existsSync(this.pluginDir)) {
 			fs.mkdirSync(this.pluginDir)
 		}
@@ -57,7 +57,7 @@ export default class {
 	 */
 	async exportPlugin() {
 		copyDirectory(pluginTemplateDir, this.pluginDir)
-		const data = fs.readFileSync(path.join(__dirname, 'logos', this.config.category + '.png'))
+		const data = fs.readFileSync(path.join(__dirname,'../', 'logos', this.config.category + '.png'))
 		fs.writeFileSync(this.pluginDir + '/logo.png', data)
 		const pluginFile = path.join(this.pluginDir, 'plugin.json')
 		return new Promise((resolve, reject) => {

@@ -1,6 +1,7 @@
-import { getDom } from './utils/helper.js'
-import { get } from './utils/http.js'
-import path from 'path'
+const { getDom } = require('./utils/helper.js')
+const { get } = require('./utils/http.js')
+const path = require('path')
+
 const host = 'www.w3cschool.cn'
 const protocol = 'https:'
 /**
@@ -13,12 +14,35 @@ let categoryDir = ''
 /**
  * 待采集的网址列表
  */
-export let urls = []
+let urls = []
+
 /**
  * 所有网址列表
  */
-export let urlAll = new Set()
+let urlAll = new Set()
 
+/**
+ * 获取待采集的网址列表
+ * @return {Array}
+ */
+exports.getUrls = () => urls
+
+/**
+ * 获取所有网址列表,包含采集过的和未采集的
+ * @return {Set}
+ */
+exports.getAllUrls = () => urlAll
+
+/**
+ * 索引列表
+ */
+let indexes = []
+
+/**
+ * 获取索引列表
+ * @return {Array}
+ */
+exports.getIndexes = () => indexes
 /**
  * 添加网址,如果列表中已存在则跳过
  * @param {String} url 要添加的网址
@@ -32,15 +56,10 @@ function addUrl(url, referer) {
 }
 
 /**
- * 索引列表
- */
-export let indexes = []
-
-/**
  * 设置要采集的分类,初始化操作
  * @param {String} name 目录名
  */
-export function setCategory(name) {
+exports.setCategory = function (name) {
 	categroyName = name
 	categoryDir = `/${name}/`
 	indexes = []
@@ -52,7 +71,7 @@ export function setCategory(name) {
  * 获取列表
  * @return {*}
  */
-export async function getList() {
+exports.getList = async function () {
 	const url = `${protocol}//${host}/${categroyName}/`
 	const html = await get(url)
 	const $ = getDom(html)
@@ -76,7 +95,7 @@ export async function getList() {
 	})
 	return {
 		title,
-		content:htmlEl.html(),
+		content: htmlEl.html(),
 	}
 }
 
@@ -92,7 +111,7 @@ export async function getList() {
  * @param {String} url 要采集的地址
  * @return {Content} 采集结果
  */
-export async function getContent(url) {
+exports.getContent = async function (url) {
 	const html = await get(url)
 	let $ = getDom(html)
 	const title = $('#pro-mian-header h1').text()

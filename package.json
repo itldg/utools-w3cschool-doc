@@ -2,7 +2,6 @@
   "name": "utools-w3cschool-doc",
   "version": "1.0.0",
   "description": "uTools w3cschool 文档",
-  "type": "module",
   "scripts": {
     "make": "node main.js"
   },

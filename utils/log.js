@@ -10,7 +10,7 @@ function flush() {
  * @param {String} msg 要打印的日志内容
  * @param {Boolean} newLine 是否打印后换行
  */
-export default function(msg = '', newLine = false) {
+module.exports = function (msg = '', newLine = false) {
 	flush()
 	if (newLine) {
 		console.log(msg)
