@@ -6,5 +6,6 @@
 
 ## 已发布插件
 
-- lua
-- less
+- Lua 教程
+- Less 教程
+- Vue.js 2.0 教程
