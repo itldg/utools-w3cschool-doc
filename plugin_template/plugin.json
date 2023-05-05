@@ -1,0 +1,16 @@
+{
+	"version": "{ver}",
+	"pluginName": "{name}",
+	"description": "{name} 数据来源:w3cschool",
+	"author": "IT老大哥",
+	"homepage": "https://gitee.com/itldg/utools-w3cschool-doc",
+	"preload": "preload.js",
+	"logo": "logo.png",
+	"features": [
+		{
+			"code": "doc",
+			"explain": "{name}",
+			"cmds": ["{name}", "{category}"]
+		}
+	]
+}

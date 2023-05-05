@@ -1,0 +1,20 @@
+{
+  "name": "utools-w3cschool-doc",
+  "version": "1.0.0",
+  "description": "uTools w3cschool 文档",
+  "type": "module",
+  "scripts": {
+    "make": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/itldg/utools-w3cschool-doc.git"
+  },
+  "author": "IT老大哥",
+  "license": "MIT",
+  "dependencies": {
+    "highlight.js": "^11.6.0",
+    "jquery": "^3.6.1",
+    "jsdom": "^20.0.2"
+  }
+}
