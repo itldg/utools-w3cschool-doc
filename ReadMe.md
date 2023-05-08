@@ -4,6 +4,18 @@
 
 开源地址: [Gitee](https://gitee.com/itldg/utools-lua-doc)  [GitHub](https://github.com/itldg/utools-lua-doc)
 
+## 开发
+
+```bash
+# 安装依赖
+npm install
+
+# 生成插件
+npm run make
+
+# 生成结果在plugins目录下
+```
+
 ## 已发布插件
 
 - Lua 教程
