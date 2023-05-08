@@ -24,4 +24,9 @@ module.exports = [
 		category: 'arduino',
 		ver: '1.0.0',
 	},
+	{
+		name: 'VUE3 教程',
+		category: 'vuejs3',
+		ver: '1.0.0',
+	},
 ]
