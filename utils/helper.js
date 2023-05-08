@@ -12,10 +12,13 @@ exports.removeHtmlTag = function (content) {
 
 /**通过Html字符串获取Jquery对象
  * @param {String} html - html字符串
+ * @param {String} url - 网址
  * @return {Function} Jquery
  */
-exports.getDom = function (html) {
-	var dom = new JSDOM(html)
+exports.getDom = function (html, url) {
+	var dom = new JSDOM(html, {
+		url,
+	})
 	return jQuery(dom.window)
 }
 

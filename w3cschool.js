@@ -75,7 +75,7 @@ exports.getList = async function () {
 	const url = `${protocol}//${host}/${categroyName}/`
 	urlAll.add(url)
 	const html = await get(url)
-	const $ = getDom(html)
+	const $ = getDom(html, url)
 	var $as = $('.dd-item a[href]')
 	hrefChange($as, url)
 	const title = $('h1').text()
@@ -114,7 +114,7 @@ exports.getList = async function () {
  */
 exports.getContent = async function (url) {
 	const html = await get(url)
-	let $ = getDom(html)
+	let $ = getDom(html, url)
 	var $as = $('.dd-item a[href]')
 	hrefChange($as, url)
 	const title = $('#pro-mian-header h1').text()
@@ -154,16 +154,15 @@ function hrefChange(as, url) {
 		if (!newUrl.pathname.toLocaleLowerCase().startsWith(categoryDir)) {
 			return
 		}
-		let href = newUrl.href
-		if (href.includes('%') || href.endsWith('/')) {
+		if (newUrl.href.includes('%') || newUrl.href.endsWith('/')) {
 			return
 		}
-		if (!href.endsWith('.html')) {
-			href += '.html'
+		if (!newUrl.href.endsWith('.html') && !newUrl.href.includes('#')) {
+			newUrl.href += '.html'
 		}
-		this.href = path.basename(href)
+		this.href = path.basename(newUrl.href)
 		this.target = '_self'
-		addUrl(href, url)
+		addUrl(newUrl.origin + newUrl.pathname, url)
 	})
 }
 
