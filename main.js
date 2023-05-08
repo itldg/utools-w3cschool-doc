@@ -30,7 +30,7 @@ async function make() {
 		}
 		await plugin.exportPlugin()
 		await plugin.exportIndex(indexes)
-		addLog(`✅ 采集完成 ${item.name}, 共分析 ${allUrls.size + 1} 个网址, 整理了 ${indexes.length} 篇文档`, true)
+		addLog(`✅ 采集完成 ${item.name}, 共分析 ${allUrls.size} 个网址, 整理了 ${indexes.length} 篇文档`, true)
 	}
 }
 make()

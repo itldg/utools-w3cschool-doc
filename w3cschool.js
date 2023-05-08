@@ -73,6 +73,7 @@ exports.setCategory = function (name) {
  */
 exports.getList = async function () {
 	const url = `${protocol}//${host}/${categroyName}/`
+	urlAll.add(url)
 	const html = await get(url)
 	const $ = getDom(html)
 	var $as = $('.dd-item a[href]')
@@ -114,6 +115,8 @@ exports.getList = async function () {
 exports.getContent = async function (url) {
 	const html = await get(url)
 	let $ = getDom(html)
+	var $as = $('.dd-item a[href]')
+	hrefChange($as, url)
 	const title = $('#pro-mian-header h1').text()
 	const time = $('#pro-mian-header .kn-infomation')
 	const createdAt = $(time).attr('title')
@@ -148,7 +151,7 @@ function hrefChange(as, url) {
 		if (newUrl.host != host) {
 			return
 		}
-		if (!newUrl.pathname.startsWith(categoryDir)) {
+		if (!newUrl.pathname.toLocaleLowerCase().startsWith(categoryDir)) {
 			return
 		}
 		let href = newUrl.href
