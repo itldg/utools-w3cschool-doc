@@ -29,4 +29,9 @@ module.exports = [
 		category: 'vuejs3',
 		ver: '1.0.0',
 	},
+	{
+		name:'MongoDB 教程',
+		category: 'mongodb',
+		ver: '1.0.0',
+	}
 ]
