@@ -9,6 +9,10 @@ async function make() {
 		addLog(`🍺 开始采集 ${item.name}`, true)
 		w3c.setCategory(item.category)
 		const plugin = new Plugin(item)
+		if (plugin.exist()) {
+			addLog(`ℹ️ 已存在,跳过 ${item.name}`, true)
+			continue
+		}
 		addLog('正在获取目录...')
 		const resultList = await w3c.getList()
 		let urls = w3c.getUrls()

@@ -53,6 +53,15 @@ module.exports = class {
 	}
 
 	/**
+	 * 检查该教程是否已生成
+	 * @return {Boolean} 是否已存在
+	 */
+	async exist()
+	{
+		const pluginFile = path.join(this.pluginDir, 'indexes.json')
+		return fs.existsSync(pluginFile);
+	}
+	/**
 	 * 导出插件
 	 */
 	async exportPlugin() {
